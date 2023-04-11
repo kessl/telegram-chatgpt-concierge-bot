@@ -11,7 +11,7 @@ This is a Telegram bot that uses:
 
 ### How to use
 
-> Prerequisite: You need to have a Telegram bot token and an OpenAI API key with access to GPT-4. Ask ChatGPT how to get these.
+> Prerequisite: You need Node 18, a Telegram bot token and an OpenAI API key with access to GPT-4. Optionally you can use other model by setting `OPENAI_MODEL` env var. Ask ChatGPT how to get these. You'll also need `ffmpeg` installed to use voice interactions.
 
 1. `git clone https://github.com/RafalWilinski/telegram-chatgpt-concierge-bot`
 2. `cd telegram-chatgpt-concierge-bot`
@@ -22,7 +22,7 @@ TELEGRAM_TOKEN=
 OPENAI_API_KEY=
 PLAY_HT_SECRET_KEY=
 PLAY_HT_USER_ID=
-OPENAI_MODEL=gpt3.5-turbo # only if you don't have access to GPT-4
+OPENAI_MODEL=gpt-3.5-turbo # only if you don't have access to GPT-4
 ```
 
 4. `npm install`

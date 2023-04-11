@@ -20,8 +20,6 @@ if (!existsSync(workDir)) {
   mkdirSync(workDir);
 }
 
-healthcheck();
-
 bot.start((ctx) => {
   ctx.reply("GREETINGS FELLOW HUMAN\n\nI'm a GPT-3.5 language model. I can google and I understand voice messages. Ask me anything");
 });
@@ -78,6 +76,7 @@ bot.on("message", async (ctx) => {
   }
 
   console.log("Input: ", text);
+
   await ctx.sendChatAction("typing");
   try {
     const response = await model.call(text);
@@ -85,12 +84,26 @@ bot.on("message", async (ctx) => {
     await ctx.reply(response);
   } catch (error) {
     console.log(error);
+
+    const message = JSON.stringify(
+      (error as any)?.response?.data?.error ?? "Unable to extract error"
+    );
+
+    console.log({ message });
+
     await ctx.reply(
-      "Whoops! There was an error while talking to OpenAI. See logs for details."
+      "Whoops! There was an error while talking to OpenAI. Error: " + message
     );
   }
 });
 
-bot.launch();
+bot.launch().then(() => {
+  console.log("Bot launched");
+  healthcheck();
+});
+
+process.on("SIGTERM", () => {
+  bot.stop();
+});
 
 console.log("Bot started");
