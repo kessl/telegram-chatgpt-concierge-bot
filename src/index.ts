@@ -23,11 +23,11 @@ if (!existsSync(workDir)) {
 healthcheck();
 
 bot.start((ctx) => {
-  ctx.reply("Welcome to my Telegram bot!");
+  ctx.reply("GREETINGS FELLOW HUMAN\n\nI'm a GPT-3.5 language model. I can google and I understand voice messages. Ask me anything");
 });
 
 bot.help((ctx) => {
-  ctx.reply("Send me a message and I will echo it back to you.");
+  ctx.reply("I'm a GPT-3.5 language model. I can google and I understand voice messages. Ask me anything");
 });
 
 bot.on("voice", async (ctx) => {
